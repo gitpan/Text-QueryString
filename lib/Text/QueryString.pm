@@ -3,7 +3,7 @@ use strict;
 use XSLoader;
 our $VERSION;
 BEGIN {
-    $VERSION = '0.02';
+    $VERSION = '0.03';
     if ($ENV{PERL_TEXT_QUERYSTRING_BACKEND} eq 'PP') {
         require Text::QueryString::PP;
         no strict 'refs';
@@ -44,19 +44,31 @@ Text::QueryString - Fast QueryString Parser
     @query = $tqs->parse("foo=bar;bar=baz");
     @query = $tqs->parse("foo"); # foo => ""
 
+=head1 DISCLAIMER
+
+When I wrote this module, I didn't know about L<URL::Encode>, which apparently
+does the same thing I wanted to do via C<url_param_flat()> method. Upon closer
+examination, L<URL::Encode> seems to be much faster, so if you came here
+searching for "query string" or something, then go look at that module instead.
+
 =head1 DESCRIPTION
 
 WARNING: Still in ALPHA quality! Use at your own risk!
 
-Text::QueryString is for when you need that speed to parse those punishingly
-annoying query strings that they send to your webapp. The reason this
-came to be is that we have encountered cases where we got hit by a performance 
-degradation when moving from Apache based solution to Perl based solution.
+Text::QueryString is for when you need that speed to parse those annoying query strings that they send to your webapp.
 
-Yes, normally just adding servers may be good, but since we were replacing
-old code to new code in hopes that things would get better, this performance
-degradation (while understandable because obviously C is much faster when
-working with simple string like query strings) really made us feel sad.
+The reason this came to be is that we have encountered cases where we got hit
+by a relatively big performance degradation when moving from Apache based
+solution to Perl based solution, and taking the run time profile lead us to
+believe that URI / query parameter parsing was taking relative long time.
+
+Normally just adding servers may be good enough, but since we were replacing
+old code to new code in hopes that things would get better, we just...
+expected better.
+
+This performance degradation while understandable because obviously C is much
+faster when working with simple string like query strings, really made us feel
+sad, so much so that it made me want to just speed up parsing query parameters.
 
 So here's Text::QueryString. By default the XS version is built and loaded.
 It will parse a given string, and run URI decoding on those values
@@ -101,6 +113,6 @@ Dan Kogai - For URI::Escape::XS
 
 =head1 AUTHOR
 
-Daisuke Maki C< <<daisuke@endeworks.jp>> >
+Daisuke Maki C<< <daisuke@endeworks.jp> >>
 
 =cut

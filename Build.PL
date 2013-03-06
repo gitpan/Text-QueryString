@@ -20,8 +20,9 @@ my $builder = Module::Build::Pluggable->new(
     module_name         => 'Text::QueryString',
     license             => 'artistic_2',
     configure_requires  => {
-        'Module::Build'             => '0.40',
-        'Module::Build::Pluggable'  => '0.05',
+        'Module::Build'                     => '0.40',
+        'Module::Build::Pluggable'          => '0.05',
+        'Module::Build::Pluggable::XSUtil'  => '1.00',
     },
     create_makefile_pl  => 'small',
     requires            => {
