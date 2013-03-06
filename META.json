@@ -17,10 +17,8 @@
       "build" : {
          "requires" : {
             "ExtUtils::CBuilder" : "0",
-            "Module::Build::Pluggable::ReadmeMarkdownFromPod" : "0.02",
             "Module::Build::Pluggable::Repository" : "0.01",
-            "Module::Build::Pluggable::XSUtil" : "0.01",
-            "Pod::Markdown" : "0"
+            "Module::Build::Pluggable::XSUtil" : "0.01"
          }
       },
       "configure" : {
@@ -28,7 +26,6 @@
             "ExtUtils::ParseXS" : "2.21",
             "Module::Build" : "0.40",
             "Module::Build::Pluggable" : "0.05",
-            "Module::Build::Pluggable::ReadmeMarkdownFromPod" : "0.02",
             "Module::Build::Pluggable::Repository" : "0.01",
             "Module::Build::Pluggable::XSUtil" : "0.01"
          }
@@ -43,7 +40,7 @@
    "provides" : {
       "Text::QueryString" : {
          "file" : "lib/Text/QueryString.pm",
-         "version" : "0.01"
+         "version" : "0.02"
       },
       "Text::QueryString::PP" : {
          "file" : "lib/Text/QueryString/PP.pm",
@@ -59,5 +56,5 @@
          "url" : "git://github.com/lestrrat/p5-Text-QueryString.git"
       }
    },
-   "version" : "0.01"
+   "version" : "0.02"
 }
